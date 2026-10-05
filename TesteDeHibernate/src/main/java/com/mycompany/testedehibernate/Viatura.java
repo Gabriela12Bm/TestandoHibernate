@@ -5,28 +5,33 @@
 package com.mycompany.testedehibernate;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.Date;
 
 /**
  *
  * @author aluno
  */
+
 @Entity
 @Table(name = "Viatura")
-
 public class Viatura {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "via_id")
     private Integer id;
-    @Column(name = "via_placa", lenght = 45)
+    @Column(name = "via_placa", length = 7, nullable = false, unique = true)
     private String placa;
-    @Column(name = "via_combutivel", lenght = 45)
+    @Column(name = "via_combutivel", length = 45, nullable = false, unique = false)
     private String combutivel;
-    @Column(name = "via_revisao")
-    private Date revisao;
-    @Column(name = "via_km")
+    @Column(name = "via_ultima_revisao", nullable = false, unique = false)
+    private LocalDate ultimaRevisao;
+    @Column(name = "via_km", nullable = false, unique = false)
     private Integer km;
     
     public Viatura() {
@@ -57,12 +62,12 @@ public class Viatura {
         this.combutivel = combutivel;
     }
 
-    public Date getRevisao() {
-        return revisao;
+    public LocalDate getRevisao() {
+        return ultimaRevisao;
     }
 
-    public void setRevisao(Date revisao) {
-        this.revisao = revisao;
+    public void setRevisao(LocalDate revisao) {
+        this.ultimaRevisao = revisao;
     }
 
     public Integer getKm() {
@@ -74,3 +79,24 @@ public class Viatura {
     }
 
 }
+@Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Viatura) {
+            Viatura aux = (Viatura) obj;
+            if ((aux.getId() != null) && (aux.getPlaca() != null)) {
+                if ((aux.getId().equals(this.id)) && (aux.getPlaca().equals(this.placa))) {
+
+                }
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }

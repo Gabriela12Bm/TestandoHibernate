@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.testedehibernate;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GeneratedType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import java.time.LocalDate;
@@ -15,13 +16,13 @@ import java.time.LocalDate;
  * @author aluno
  */
 @Entity
-@Table(name = "Bomeiro")
+@Table(name = "Bombeiro")
 public class Bombeiro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bom_id")
     private Integer id;
-    @Column(name = "bom_cpf", lenght = 11, unique = true, nullable = false)
+    @Column(name = "bom_cpf", length = 11, unique = true, nullable = false)
     private String cpf;
     @Column(name = "bom_data_nascimento", nullable = false)
     private LocalDate dataNascimento;
