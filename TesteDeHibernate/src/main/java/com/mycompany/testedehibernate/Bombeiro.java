@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.testedehibernate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Entity;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Bombeiro")
 public class Bombeiro {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bom_id")
@@ -34,9 +36,22 @@ public class Bombeiro {
     public Bombeiro() {
     }
 
+    /*
+    
+    @OneToOne(mappedBy = "bombeiro")
+    private Usuario usuario
+            @OneToMany(mappedBy = "bombeiro")
+    private Set<TelefoneContato> telefone = new HashSet<TelefoneContato>
+                    @ManyToMany
+                    @JoinTable(name="BombeiroPatente",
+                    joinColumn = @JoinColumn(name="bom_id"),
+                    inverseJoinColumns = @JoinColumn(name = "pat_id"))
+    private Set<Patente> patente = new HashSet<Patente>();
+
     /**
      * @return the id
      */
+    
     public Integer getId() {
         return id;
     }
@@ -125,4 +140,11 @@ public class Bombeiro {
     public int hashCode() {
         return getClass().hashCode();
     }
+    
+   
+
+
+   
+    
+    
 }
